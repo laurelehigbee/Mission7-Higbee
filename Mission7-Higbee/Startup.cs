@@ -42,6 +42,12 @@ namespace Mission7_Higbee
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "paging",
+                    pattern: "Page{pageNum}",
+                    defaults: new { Controller = "Home", action = "Index" }
+                    );
+
                 endpoints.MapDefaultControllerRoute(); //instructions for using endpoints
             });
         }
