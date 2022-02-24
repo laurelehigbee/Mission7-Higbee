@@ -47,17 +47,16 @@ namespace Mission7_Higbee
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute("typepage",
-                    pattern:"{bookType}/{pageNum}",
-                    new { Controller = "Home", action = "Index" });
-
+                endpoints.MapControllerRoute("categorypage",
+                pattern: "{bookCategory}/Page{pageNum}",
+                new { Controller = "Home", action = "Index" });
 
                 endpoints.MapControllerRoute("Paging",
-                    pattern:"/{bookType}/{pageNum}", new { 
+                    pattern:"Page{pageNum}", new { 
                     Controller = "Home", action = "Index", pageNum=1 });
 
-                endpoints.MapControllerRoute("type",
-                    pattern: "/{bookType}/{pageNum}", 
+                endpoints.MapControllerRoute("category",
+                    pattern: "{bookCategory}", 
                     new {Controller = "Home",action = "Index", pageNum = 1});
 
                 endpoints.MapDefaultControllerRoute(); //instructions for using endpoints
