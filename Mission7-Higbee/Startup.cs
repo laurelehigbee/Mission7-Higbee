@@ -28,6 +28,9 @@ namespace Mission7_Higbee
                 options.UseSqlite(Configuration["ConnectionStrings:BookstoreDbConnection"]);
             });
             services.AddScoped<IBookstoreRepository, EFBookstoreRepository>(); //adds repositories
+            services.AddRazorPages();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -35,14 +38,31 @@ namespace Mission7_Higbee
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseStaticFiles();
             }
+            app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute("typepage",
+                    pattern:"{bookType}/{pageNum}",
+                    new { Controller = "Home", action = "Index" });
+
+
+                endpoints.MapControllerRoute("Paging",
+                    pattern:"/{bookType}/{pageNum}", new { 
+                    Controller = "Home", action = "Index", pageNum=1 });
+
+                endpoints.MapControllerRoute("type",
+                    pattern: "/{bookType}/{pageNum}", 
+                    new {Controller = "Home",action = "Index", pageNum = 1});
+
                 endpoints.MapDefaultControllerRoute(); //instructions for using endpoints
+
+                endpoints.MapRazorPages();
             });
         }
     }
