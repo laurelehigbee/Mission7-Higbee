@@ -16,6 +16,7 @@ namespace Mission7_Higbee.Models
         }
 
         public DbSet<Book> Books { get; set; } //references the books information in the db
+        public DbSet<Purchase>Purchases { get; set; }//references the purchases information in the db
 
     }
 }
