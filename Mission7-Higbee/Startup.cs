@@ -34,6 +34,7 @@ namespace Mission7_Higbee
 
             services.AddScoped<Cart>(x => SessionCart.GetCart(x));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IPurchaseRepository, EFPurchaseRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

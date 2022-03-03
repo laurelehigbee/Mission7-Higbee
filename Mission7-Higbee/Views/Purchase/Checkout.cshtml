@@ -8,7 +8,14 @@
 <h2>Checkout:</h2>
 <p>Please enter the following information:</p>
 <form method="post">
+
+    <div asp-validation-summary="All" class="text-danger"></div>
     <h4>Ship To:</h4>
+    <div class="form-group">
+        <label asp-for="Name">Name:</label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <h4>Shipping Information:</h4>
     <div class="form-group">
         <label asp-for="AddressLine1">Address Line 1:</label>
         <input asp-for="AddressLine1" class="form-control" />
