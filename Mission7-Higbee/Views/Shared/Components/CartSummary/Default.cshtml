@@ -9,7 +9,7 @@
     @if (Model.Items.Count>0)
     {
     <small class="navbar-text">
-        <b>Your cart:</b>
+        <b>Your Cart:</b>
         @Model.Items.Sum(x => x.Quantity) item(s)
         @Model.CalculateTotal().ToString("c")
     </small>
