@@ -9,13 +9,13 @@ namespace Mission7_Higbee.Controllers
 {
     public class PurchaseController : Controller
     {
-        private IPurchaseRepository repo { get; set; }
-        private Cart cart { get; set; }
+        private IPurchaseRepository Repo { get; set; }
+        private Cart Cart { get; set; }
     
         public PurchaseController(IPurchaseRepository temp, Cart c)
         {
-            repo = temp;
-            cart = c;
+            Repo = temp;
+            Cart = c;
         }
         public IActionResult Checkout()
         {
@@ -25,15 +25,15 @@ namespace Mission7_Higbee.Controllers
         [HttpPost]
         public IActionResult Checkout(Purchase purchase)
         {
-            if(cart.Items.Count()==0)
+            if(Cart.Items.Count()==0)
             {
                 ModelState.AddModelError("", "Sorry, your basket is empty");
             }
             if (ModelState.IsValid)
             {
-                purchase.Lines = cart.Items.ToArray();
-                repo.SavePurchase(purchase);
-                cart.ClearCart();
+                purchase.Lines = Cart.Items.ToArray();
+                Repo.SavePurchase(purchase);
+                Cart.ClearCart();
 
                 return RedirectToPage("/Confirmation");
             }

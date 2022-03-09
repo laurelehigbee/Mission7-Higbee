@@ -29,5 +29,7 @@ namespace Mission7_Higbee.Models
         public string ZipCode { get; set; }
         [Required(ErrorMessage = "Please enter a valid country:")]
         public string Country { get; set; }
+        [BindNever]
+        public bool OrderReceived { get; set; } = false;
     }
 }

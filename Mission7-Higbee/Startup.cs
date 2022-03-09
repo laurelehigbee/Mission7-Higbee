@@ -35,6 +35,7 @@ namespace Mission7_Higbee
             services.AddScoped<Cart>(x => SessionCart.GetCart(x));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IPurchaseRepository, EFPurchaseRepository>();
+            services.AddServerSideBlazor();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -51,21 +52,23 @@ namespace Mission7_Higbee
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute("categorypage",
-                pattern: "{bookCategory}/Page{pageNum}",
-                new { Controller = "Home", action = "Index" });
+            endpoints.MapControllerRoute("categorypage",
+            pattern: "{bookCategory}/Page{pageNum}",
+            new { Controller = "Home", action = "Index" });
 
-                endpoints.MapControllerRoute("Paging",
-                    pattern:"Page{pageNum}", new { 
-                    Controller = "Home", action = "Index", pageNum=1 });
+            endpoints.MapControllerRoute("Paging",
+                pattern: "Page{pageNum}", new {
+                    Controller = "Home", action = "Index", pageNum = 1 });
 
-                endpoints.MapControllerRoute("category",
-                    pattern: "{bookCategory}", 
-                    new {Controller = "Home",action = "Index", pageNum = 1});
+            endpoints.MapControllerRoute("category",
+                pattern: "{bookCategory}",
+                new { Controller = "Home", action = "Index", pageNum = 1 });
 
-                endpoints.MapDefaultControllerRoute(); //instructions for using endpoints
+            endpoints.MapDefaultControllerRoute(); //instructions for using endpoints
 
-                endpoints.MapRazorPages();
+            endpoints.MapRazorPages();
+            endpoints.MapBlazorHub();
+            endpoints.MapFallbackToPage("/admin/{*catchall}", "/admin/Index");
             });
         }
     }
