@@ -81,6 +81,8 @@ namespace Mission7_Higbee
             endpoints.MapBlazorHub();
             endpoints.MapFallbackToPage("/admin/{*catchall}", "/admin/Index");
             });
+
+            IdentitySeedData.EnsurePopulated(app);
         }
     }
 }
