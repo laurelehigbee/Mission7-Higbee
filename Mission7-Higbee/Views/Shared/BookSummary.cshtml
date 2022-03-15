@@ -1,31 +1,25 @@
 ﻿@model Book
 
-<div class="card card-outline-primary m-1 p-1">
+<div class="card p-2">
+    <h3 class="card-header">@Model.Title</h3>
+    <span class="badge bg-info" style="float:right">  </span>
+    <div class="card-body">
+        <p class="card-text">Author: @Model.Author</p>
+        <p class="card-text">Publisher: @Model.Publisher</p>
+        <p class="card-text">ISBN: @Model.Isbn</p>
+        <p class="card-text">Classification: @Model.Classification</p>
+        <p class="card-text">Category: @Model.Category</p>
+        <p class="card-text">Page Count: @Model.PageCount</p>
+   
+        <form method="post" asp-page="/Shop">
 
-    <div class="bg-light p-1">
-        <h4>@Model.Title</h4>
-
-        <span class="badge bg-info" style="float:right">
-            Price: @Model.Price
-        </span>
+            <input type="hidden" asp-for="@Model.BookId" />
+            <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+            <span class="card-text">
+                <button type="submit" class="btn btn-success btn-sm">Buy- $@Model.Price</button>
+            </span>
+        </form>
     </div>
-
-    <ul class="list-unstyled">
-        <li>Author: @Model.Author</li>
-        <li>Publisher: @Model.Publisher</li>
-        <li>ISBN: @Model.Isbn</li>
-        <li>Classification: @Model.Classification</li>
-        <li>Category: @Model.Category</li>
-        <li>Page Count: @Model.PageCount</li>
- 
-    </ul>
-
-    <form method="post" asp-page="/Shop">
-
-        <input type="hidden" asp-for="@Model.BookId" />
-        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-        <span class="card-text">
-            <button type="submit" class="btn btn-success btn-sm float-end">Buy</button>
-        </span>
-    </form>
 </div>
+<br />
+

@@ -1,40 +1,44 @@
 ﻿@model LoginModel
-@{ 
+@{
     Layout = null;
 }
 <html>
 
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <title>Bookstore Login</title>
-        <link href="~/lib/css/bootstrap.min.css" rel="stylesheet" />
-    </head>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Bookstore Login</title>
+    <link href="~/lib/css/bootstrap.min.css" rel="stylesheet" />
+</head>
 
-    <body>
-        
-        <div class="bg-dark text-white p-2">
-            <span class="navbar-brand m-lg-2">The Bookstore</span>
-        </div>
+<body>
 
-        <div class="m-1 p-1">
-            <div class="text-danger" asp-validation-summary="All"></div>
+    <div class="bg-dark text-white p-2">
+        <span class="navbar-brand m-lg-2">The Bookstore</span>
+    </div>
 
-            <form method="post" asp-controller="Account" asp-action="Login">
+    <center><div class="form-inline col-4">
+        <div class="text-danger" asp-validation-summary="All"></div>
 
-                <div class="form-group">
-                    <label asp-for="Username">Username:</label>
-                    <input asp-for="Username" class="form-control" />
+        <form method="post" asp-controller="Account" asp-action="Login">
+
+            <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Username:</div>
                 </div>
+                <input asp-for="Username" class="form-control" />
+            </div>
 
-                <div class="form-group">
-                    <label asp-for="Password">Password:</label>
-                    <input asp-for="Password" class="form-control" type="password"/>
+            <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Password:</div>
                 </div>
+                <input asp-for="Password" class="form-control" type="password" />
+            </div>
 
-                <button class="btn btn-primary" type="submit">Log In</button>
+            <button class="btn btn-primary" type="submit">Log In</button>
 
-                <input type="hidden" asp-for="ReturnUrl" />
-            </form>
-        </div>
-    </body>
+            <input type="hidden" asp-for="ReturnUrl" />
+        </form>
+    </div></center>
+</body>
 </html>
